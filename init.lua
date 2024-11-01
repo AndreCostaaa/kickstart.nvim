@@ -745,6 +745,7 @@ require('lazy').setup({
         json = { 'prettier' },
         cs = { 'csharpier' },
         c = { 'clang-format' },
+        sv = { 'verible' },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { 'prettierd', 'prettier' } },
