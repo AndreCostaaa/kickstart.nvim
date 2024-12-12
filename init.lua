@@ -722,8 +722,12 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = false, cpp = false }
+        local repository = vim.fn.expand '%:p'
+        local is_lvgl = repository:find('lvgl', 1)
+        local is_so3 = repository:find('so3', 1)
+
         local lsp_format_opt
-        if disable_filetypes[vim.bo[bufnr].filetype] then
+        if disable_filetypes[vim.bo[bufnr].filetype] or is_lvgl or is_so3 then
           lsp_format_opt = 'never'
         else
           lsp_format_opt = 'fallback'
