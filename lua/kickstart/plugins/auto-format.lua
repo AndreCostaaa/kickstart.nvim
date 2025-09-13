@@ -8,6 +8,21 @@ local disable_auto_fmt = function()
   auto_fmt_enabled = false
 end
 
+local function is_in_lvgl_dir(bufnr)
+  local filepath = vim.api.nvim_buf_get_name(bufnr)
+  local home = os.getenv 'HOME'
+  local lvgl_path = home .. '/dev/lvgl'
+  return string.find(filepath, lvgl_path, 1, true) == 1
+end
+
+local function c_cpp_formatter(bufnr)
+  if is_in_lvgl_dir(bufnr) then
+    return { 'astyle' }
+  else
+    return { 'clang-format' }
+  end
+end
+
 vim.api.nvim_create_user_command('EnFmt', enable_auto_fmt, {})
 vim.api.nvim_create_user_command('DisFmt', disable_auto_fmt, {})
 
@@ -48,7 +63,17 @@ return { -- Autoformat
         lsp_format = lsp_format_opt,
       }
     end,
+    formatters = {
+      astyle = {
+        command = 'astyle',
+        args = {
+          '--options=' .. vim.fn.expand '~/.config/nvim/assets/lvgl-code-format.cfg',
+        },
+        stdin = true,
+      },
+    },
     formatters_by_ft = {
+
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
@@ -60,7 +85,8 @@ return { -- Autoformat
       typescript = { 'prettier' },
       json = { 'prettier' },
       cs = { 'csharpier' },
-      c = { 'clang-format' },
+      c = c_cpp_formatter,
+      cpp = c_cpp_formatter,
       sv = { 'verible' },
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
