@@ -514,7 +514,10 @@ require('lazy').setup({
               table.insert(args, '-g')
               table.insert(args, prompt_pieces[2])
             end
-            return vim.iter({ args, { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' } }):flatten():totable()
+            return vim
+              .iter({ args, { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' } })
+              :flatten()
+              :totable()
           end,
           entry_maker = make_entry.gen_from_vimgrep(opts),
           cwd = opts.cwd,
