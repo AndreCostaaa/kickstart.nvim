@@ -58,6 +58,13 @@ return { -- Autoformat
       else
         lsp_format_opt = 'fallback'
       end
+
+      -- In order to print the filetype which can be used as the key in an `formatters_by_ft` entry
+      -- local formatters = require("conform").list_formatters(bufnr)
+      -- vim.notify("Filetype: " .. vim.bo[bufnr].filetype, vim.log.levels.INFO)
+      -- vim.notify("Formatters: " .. vim.inspect(formatters), vim.log.levels.INFO)
+      -- vim.notify('LSP format: ' .. lsp_format_opt, vim.log.levels.INFO)
+
       return {
         timeout_ms = 500,
         lsp_format = lsp_format_opt,
