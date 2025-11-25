@@ -88,11 +88,8 @@ return { -- Autoformat
       c = c_cpp_formatter,
       cpp = c_cpp_formatter,
       sv = { 'verible' },
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      javascript = { { 'prettierd', 'prettier' } },
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },
 }
