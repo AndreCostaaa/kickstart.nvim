@@ -95,6 +95,7 @@ return { -- Autoformat
       c = c_cpp_formatter,
       cpp = c_cpp_formatter,
       sv = { 'verible' },
+      vhd = { 'vsg' },
       -- You can use 'stop_after_first' to run the first available formatter from the list
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
     },
