@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     default = {
-      dir_path = 'imgs',
+      dir_path = 'media',
       extension = 'png',
       file_name = '%Y-%m-%d_%H-%M-%S',
       insert_mode_after_paste = false,
