@@ -78,13 +78,22 @@ return { -- Autoformat
         },
         stdin = true,
       },
+      cmake_format = {
+        command = 'cmake-format',
+        args = {
+          '--config-files',
+          vim.fn.expand '~/.config/nvim/assets/cmake-format.yaml',
+          '-',
+        },
+        stdin = true,
+      },
     },
     formatters_by_ft = {
 
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
-      --
+      cmake = { 'cmake_format' },
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
       html = { 'prettier' },
